@@ -1,2 +1,5 @@
+venv/*
+temp/*
+!temp/.keep
 output/*
 !output/.keep
