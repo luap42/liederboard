@@ -1,4 +1,5 @@
 import os
+import re
 from bs4 import BeautifulSoup
 import urllib.request as ur
 
@@ -15,11 +16,13 @@ def download_juror_preferences(base_url, juror):
 
     with open(f"temp/juraws/{juror}",  'wb') as f:
         f.write(site)
+    print(juror)
 
     soup = BeautifulSoup(site, features="html.parser")
-    pref_heading = soup.find(text="Meine Top 10")
+    pref_heading = soup.find(text=re.compile('Meine Top 10'))
     pref_section = pref_heading.parent.parent
     pref_table = pref_section.find('table')
+
 
     preferences = []
 
