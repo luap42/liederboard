@@ -6,7 +6,7 @@ import urllib.request as ur
 def get_juror_preferences(base_url, juror):
     if os.path.exists(f'temp/juror_{juror}'):
         with open(f'temp/juror_{juror}') as f:
-            return [i.split('|') for i in f.read().strip().split('\n')]
+            return [i.split('|') for i in f.read().strip().split('\n') if len(i)]
     
     return download_juror_preferences(base_url, juror)
 
